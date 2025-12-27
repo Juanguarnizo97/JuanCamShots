@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Juan — Visual Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <nav class="menu-nav" tabindex="0">
+    <div class="menu-icon" id="menuIcon" aria-label="Open menu" tabindex="0">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <ul class="menu-list" id="menuList">
+      <li><a href="#about">About</a></li>
+      <li><a href="collections.html">Collections</a></li>
+    </ul>
+  </nav>
+  <header>
+    <h1>Juan</h1>
+    <p class="tagline">Selections from my photographic journey</p>
+  </header>
+
+  <!-- GALLERY -->
+  <section class="gallery">
+    <img src="image1.jpg" alt="Artwork 1" />
+    <img src="image2.jpg" alt="Artwork 2" />
+    <img src="image3.jpg" alt="Artwork 3" />
+    <img src="image4.jpg" alt="Artwork 4" />
+    <img src="image5.jpg" alt="Artwork 5" />
+    <img src="image6.jpg" alt="Artwork 6" />
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about">
+    <h2>About</h2>
+    <p>
+      Under construction 🦺
+    </p>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:JuanCamShots@gmail.com">JuanCamShots@gmail.com</a></p>
+    <p>Instagram: <a href="https://instagram.com/JuanCamShots" target="_blank">@JuanCamShots</a></p>
+  </section>
+
+  <!-- IMAGE MODAL -->
+  <div class="modal" id="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modal-img">
+  </div>
+
+  <script>
+    // Modal JS (existing)
+    const images = document.querySelectorAll(".gallery img");
+    const modal = document.getElementById("modal");
+    const modalImg = document.getElementById("modal-img");
+    const close = document.querySelector(".close");
+    images.forEach(img => {
+      img.onclick = () => {
+        modal.style.display = "flex";
+        modalImg.src = img.src;
+      };
+    });
+    close.onclick = () => {
+      modal.style.display = "none";
+    };
+
+    // Menu JS
+    const menuIcon = document.getElementById("menuIcon");
+    const menuList = document.getElementById("menuList");
+    menuIcon.addEventListener("click", function() {
+      menuList.classList.toggle("open");
+    });
+    menuIcon.addEventListener("keypress", function(e) {
+      if (e.key === "Enter" || e.key === " ") menuList.classList.toggle("open");
+    });
+    document.addEventListener("click", function(e) {
+      if (!menuIcon.contains(e.target) && !menuList.contains(e.target)) menuList.classList.remove("open");
+    });
+  </script>
+</body>
+</html>
