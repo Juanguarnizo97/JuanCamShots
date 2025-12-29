@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Photo Collections</title>
+  <title>PHOTO COLLECTIONS</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
   <nav class="menu-nav" tabindex="0">
     <div class="menu-icon" id="menuIcon" aria-label="Open menu" tabindex="0">
@@ -13,41 +15,82 @@
       <span></span>
       <span></span>
     </div>
+
     <ul class="menu-list" id="menuList">
+      <!-- Dark Mode Toggle (NO TEXT) -->
+      <label class="theme-switch" for="theme-toggle" aria-label="Toggle dark mode">
+        <input type="checkbox" id="theme-toggle">
+        <span class="slider"></span>
+      </label>
+
       <li><a href="index.html#about">About</a></li>
       <li><a href="collections.html">Collections</a></li>
     </ul>
   </nav>
+
   <header>
     <h1>Collections</h1>
     <p class="tagline">Explore other photographic series</p>
   </header>
+
   <main class="collections-list">
     <div class="collection-item">
-      <h2>Urban Night</h2>
-      <a href="#">Go to Folder</a>
+      <h2>Travel</h2>
+      <a href="travel.html">Go to Collection</a>
     </div>
+
     <div class="collection-item">
-      <h2>Stillness</h2>
-      <a href="#">Go to Folder</a>
+      <h2>People</h2>
+      <a href="people.html">Go to Collection</a>
     </div>
-    <!-- Add more collections or link to actual folders here -->
+
+    <div class="collection-item">
+      <h2>Portraits</h2>
+      <a href="portraits.html">Go to Collection</a>
+    </div>
   </main>
+
   <a href="index.html" class="back-link">← Back to Main Gallery</a>
+
   <script>
-    // Menu JS (from index.html)
+    // MENU TOGGLE
     const menuIcon = document.getElementById("menuIcon");
     const menuList = document.getElementById("menuList");
-    menuIcon.addEventListener("click", function() {
+
+    menuIcon.addEventListener("click", () => {
       menuList.classList.toggle("open");
     });
-    menuIcon.addEventListener("keypress", function(e) {
-      if (e.key === "Enter" || e.key === " ") menuList.classList.toggle("open");
+
+    menuIcon.addEventListener("keypress", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        menuList.classList.toggle("open");
+      }
     });
-    document.addEventListener("click", function(e) {
-      if (!menuIcon.contains(e.target) && !menuList.contains(e.target)) menuList.classList.remove("open");
+
+    document.addEventListener("click", (e) => {
+      if (!menuIcon.contains(e.target) && !menuList.contains(e.target)) {
+        menuList.classList.remove("open");
+      }
     });
+
+    // DARK MODE TOGGLE (NO TEXT)
+    const themeToggle = document.getElementById("theme-toggle");
+
+    if (themeToggle) {
+      // Load saved preference
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
+        themeToggle.checked = true;
+      }
+
+      themeToggle.addEventListener("change", () => {
+        document.body.classList.toggle("dark-mode");
+        localStorage.setItem(
+          "theme",
+          document.body.classList.contains("dark-mode") ? "dark" : "light"
+        );
+      });
+    }
   </script>
 </body>
 </html>
-

@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Juan — Visual Portfolio</title>
+  <title>JuanCamShots — Visual Portfolio</title>
+  <!-- Spline Sans Font -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 
@@ -15,12 +17,16 @@
       <span></span>
     </div>
     <ul class="menu-list" id="menuList">
+      <label class="theme-switch" for="theme-toggle" aria-label="Toggle dark mode">
+        <input type="checkbox" id="theme-toggle">
+        <span class="slider"></span>
+      </label>
       <li><a href="#about">About</a></li>
       <li><a href="collections.html">Collections</a></li>
     </ul>
   </nav>
   <header>
-    <h1>Juan</h1>
+    <h1>JUAN</h1>
     <p class="tagline">Selections from my photographic journey</p>
   </header>
 
@@ -83,6 +89,23 @@
     document.addEventListener("click", function(e) {
       if (!menuIcon.contains(e.target) && !menuList.contains(e.target)) menuList.classList.remove("open");
     });
+    // Dark Mode Toggle
+    const themeToggle = document.getElementById('theme-toggle');
+
+if (themeToggle) {
+  if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark-mode');
+    themeToggle.checked = true;
+  }
+
+  themeToggle.addEventListener('change', () => {
+    document.body.classList.toggle('dark-mode');
+    localStorage.setItem(
+      'theme',
+      document.body.classList.contains('dark-mode') ? 'dark' : 'light'
+    );
+  });
+}
   </script>
 </body>
 </html>
